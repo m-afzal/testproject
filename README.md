@@ -64,11 +64,19 @@ e.g. `localhost:8080/scl-miningmind-2.5/rest/`
 
 # 3. Components of SCL
 ## 3.1 Recommendation Builder
-\description
+Recommendation Builder generates recommendation based on the input rules and facts.
+Recommendation builder uses forward chaining algorithm to provide recommendations for the given situation. Forward chaining algorithm is implemented inside PatternMatcher class, the PatternMatcher may fire more than one recommendation rules for a single situation, now to resolve this conflict we need a kind of conflict resolution mechanism for this purpose we have provided ConflictResolver class which uses maximum specificity mechanism to select most appropriate recommendation from the set of recommendations provided by the PatternMatcher. You can find PatternMatcher and ConflictResolver classes inside org.uclab.scl.framework.recbuilder
+
 ## 3.2 Recommendation Interpreter
-\description
+RI in the current implementation has following features:
+a.	Assess user’s interruptibility
+b.	Evaluate recommendation for its contextual suitability
+c.	Provide alternative recommendations if so required
+d.	Provide explanatory sentences along with audio/visual aids for the generated recommendations
+e.	Provide food based recommendations
+
 ## 3.3 Orchestrator
-\description
+Service Orchestrator is a wrapper for recommendation builder and recommendation interpreter. Service orchestrator provides an interface for outside world to communicate to the recommendation builder and interpreter through REST web services. It provides REST endpoints for communication. You can find the service class e.g. SCLServiceResource.java for the endpoints in org.uclab.scl.rs package.
 
 # 4. Authors
 
